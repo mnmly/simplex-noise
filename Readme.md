@@ -1,5 +1,9 @@
-
 # simplex-noise
+
+☞ [Demo](http://mnmly.github.io/simplex-noise/)
+[![](http://f.cl.ly/items/2V0y1x203g0w3T1A1z2P/Image%202013.05.25%209%3A57%3A50%20AM.png)](http://mnmly.github.io/simplex-noise/)
+
+
 
 Simplex Perlin Noise Generator
 
@@ -7,6 +11,7 @@ Simplex Perlin Noise Generator
 > Read Stefan's excellent paper for details on how this code works.
 
 This `component` version is cloned from the [gist](https://gist.github.com/banksean/304522) by [Sean McCullough](https://github.com/banksean)
+  
   
 
 ## Installation
@@ -25,7 +30,6 @@ This `component` version is cloned from the [gist](https://gist.github.com/banks
 
   // => returns random number but close enough to the value above.
   console.log(generator.noise(0.001 + 0.001, 0, 0));
-    
 ```
 
 ## License
