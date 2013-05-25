@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simplex Noise</title>
+    <script type="text/javascript" charset="utf-8" src="../build/build.js"></script>
+    <style type="text/css">
+      body{
+        background-color: white;
+      }
+      #dots{
+        position: relative;
+      }
+      .dot{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 1px;
+        border-radius: 50%;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="dots">
+      
+    </div>
+    <script>
+
+      var SimplexNoise = require('simplex-noise')
+        , r = Math
+        , count = 320
+        , amplitude = 30
+        , dots = []
+        , generator = new SimplexNoise(r)
+        , speed = 0.02
+        , offset = 0
+        , dotContainer = document.getElementById('dots')
+        , fragment = document.createDocumentFragment();
+      
+      for(var i = 0; i < count; i++){
+
+        var el = document.createElement('div')
+          , x = i
+          , y = generator.noise((i + offset) * speed, 0) * amplitude;
+
+        el.classList.add('dot');
+        translate(el, x, y);
+        fragment.appendChild(el);
+        dots.push(el);
+
+      }
+      
+      dotContainer.appendChild(fragment);
+      dotContainer.style.margin = '0 auto';
+      dotContainer.style.width = count + 'px';
+      dotContainer.style.top = (window.innerHeight - amplitude * 4) / 2 + 'px';
+      
+      function translate(el, x, y){
+        el.style.webkitTransform = 'translate3d(' + x + 'px, ' + y + 'px, 0)';
+      }
+      
+      function animate(){
+
+        webkitRequestAnimationFrame(animate);
+
+        offset += 1;
+
+        for(var i = 0; i < count; i++){
+
+          var el = dots[i]
+            , x = i
+            , y = generator.noise((i + offset) * speed, 0, 0) * amplitude
+            , hue = (amplitude - y) / amplitude * 180 + 180
+            , color = 'hsl(' + hue + ', 50%, 80%)'
+            , borderColor = 'hsla(' + hue + ', 50%, 40%, 0.4)';
+
+          translate(el, x, y);
+          el.style.backgroundColor = color
+          el.style.border = '1px solid ' + borderColor;
+
+        }
+      }
+
+      // Kick off
+      animate();
+    </script>
+  </body>
+</html>
