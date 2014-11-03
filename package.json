@@ -1,0 +1,10 @@
+{
+  "name": "simplex-noise",
+  "description": "Simplex Noise Generator",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "index.js"
+}
